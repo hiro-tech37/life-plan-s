@@ -25,3 +25,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::get('/', function () {
     return view('welcome');
 });
+
+//ゲスト
+Route::get('guest-expense','GuestExpenseController@show')->name('guest.show');
+Route::post('guest-expense','GuestExpenseController@store')->name('guest.store');
