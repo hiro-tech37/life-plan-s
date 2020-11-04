@@ -14,6 +14,8 @@
                 <li class="nav-item"><a href="#" class="nav-link">link-A</a></li>
                 {{-- リンク --}}
                 <li class="nav-item"><a href="#" class="nav-link">link-B</a></li>
+                {{-- ユーザ登録ページへのリンク --}}
+                <li>{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>
             </ul>
         </div>
     </nav>
