@@ -2,11 +2,10 @@
 
 @section('content')
         
-    
-        <h1>ゲストページ</h1>
+        <h1>家計のサイズを計りましょう</h1>
         <p>入力してね</p>
        
-             {!! Form::open( ['route' => 'guest.store']) !!}
+             {!! Form::open( ['route' => 'guest-expense.store']) !!}
 
                 <div class="form-group">
                     {!! Form::label('guest_income', '死亡後の収入：') !!}
@@ -24,11 +23,14 @@
             
             <p class="mt-4">収入：{{$guest_income}}万円/月　　支出：{{$guest_expense}}万円/月</p>
             <p>合計：{{$guest_total_expense}}万円/月</p>
+            
+            @if($guest_total_expense >= 0)
+            <p>なんと、収支がマイナスになりませんでした！！　　この場合、生命保険は不要です。</p>
+            @else
+            <p>このマイナス分をうまく補いましょう。</p>
+            @endif
+            
+            <!--進むリンクボタン-->
+            進むボタン
            
-       
-
-
-        
-        
-<!------------------------------------------>        
 @endsection

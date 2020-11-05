@@ -27,5 +27,11 @@ Route::get('/', function () {
 });
 
 //ゲスト
-Route::get('guest-expense','GuestExpenseController@show')->name('guest.show');
-Route::post('guest-expense','GuestExpenseController@store')->name('guest.store');
+Route::get('guest-expense','GuestExpenseController@show')->name('guest-expense.show');
+Route::post('guest-expense','GuestExpenseController@store')->name('guest-expense.store');
+
+////ログインユーザー
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('expense','ExpenseController@show')->name('expense.show');
+    Route::post('expense','ExpenseController@store')->name('expense.store');
+});
