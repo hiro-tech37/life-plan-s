@@ -30,8 +30,15 @@ Route::get('/', function () {
 Route::get('guest-expense','GuestExpenseController@show')->name('guest-expense.show');
 Route::post('guest-expense','GuestExpenseController@store')->name('guest-expense.store');
 
+Route::get('guest-chart','GuestChartController@show')->name('guest-chart.show');
+
 ////ログインユーザー
 Route::group(['middleware' => ['auth']], function () {
     Route::get('expense','ExpenseController@show')->name('expense.show');
     Route::post('expense','ExpenseController@store')->name('expense.store');
+    
+    Route::get('chart','ChartController@show')->name('chart.show');
+
 });
+
+

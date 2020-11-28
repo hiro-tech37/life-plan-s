@@ -22,13 +22,9 @@
             {!! Form::close() !!}
             
             <p class="mt-4">収入：{{$guest_income}}万円/月　　支出：{{$guest_expense}}万円/月</p>
-            <p>合計：{{$guest_total_expense}}万円/月</p>
+            <p style="font-weight:bold">合計：{{$guest_total_expense}}万円/月</p>
             
-            @if($guest_total_expense >= 0)
-            <p>なんと、収支がマイナスになりませんでした！！　　この場合、生命保険は不要です。</p>
-            @else
-            <p>このマイナス分をうまく補いましょう。</p>
-            @endif
+            <p　class="mt-4">{{$text}}</p>
             
             <!--進むリンクボタン-->
             進むボタン
