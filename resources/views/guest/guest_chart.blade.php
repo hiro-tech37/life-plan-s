@@ -2,12 +2,30 @@
 
 @section('content')
     <div class="container">
+       <!--戻るリンクボタン-->
+      {!! link_to_route('guest-expense.show', '戻る', [], ['class' => 'mb-5 btn btn-outline-success btn-sm']) !!}
+      
       <h1 class="mb-5">「家計のサイズ」と「保険のサイズ」を見比べる</h1>
       
-       <p>こちらが、入力結果です。<br>
+      <p>メモした金額を入力してください。</p>
+       
+         {!! Form::open( ['route' => 'guest-chart.store']) !!}
+
+            <div class="form-group">
+                {!! Form::label('guest_chartExpenses', '毎月の不足額：') !!}
+                {!! Form::text('guest_chartExpenses', null) !!}
+            </div>
+
+            {!! Form::submit('計算する', ['class' => 'btn btn-outline-primary']) !!}
+
+        {!! Form::close() !!}
+            
+      <div class="mt-5 mb-5">
+        <p>こちらが、計算結果です。<br>
          月々の不足額をグラフに直すと、このような階段状になります。<br>
          仮に、現在の年齢で死亡があったとすると、「月々の不足額 × 必要な年月」と計算し、合計金額が最も大きくなります。<br>
          これは年月の経過とともに合計金額は減っていくので、右肩下がりの三角形になります。</p>
+      </div>
       
       <canvas id="guestChart"></canvas>
       
@@ -21,18 +39,18 @@
             <div class="row"> 
               <img class="col-md-6" src="image/triangle1.png" alt="三角の保険"><img class="col-md-6" src="image/square.png" alt="四角の保険">
             </div>
-            <p class="mt-5">生命保険には三角形タイプと四角形タイプがあります。<br>
+            <p class="mt-5">生命保険には三角形タイプ(左図)と四角形タイプ(右図)があります。<br>
                ＣＭでよく目にするのは四角形タイプです。</p>
             <p>しかし、実際に必要な金額をシミュレーションした結果は三角形でした。</p>
         </div>
         <div class="mb-5">
           
-          <p>下の図を見てください。</p>
+          <p>次の図をご覧ください。</p>
             
             <img class="img-fluid d-block mx-auto mb-3" src="image/triangle2.png">
             
             <p>四角形の中に、三角形を重ねると、右上に余りが出ます。四角い保険では、この余りの部分にも保険料を払っていることになります。<br>
-            <p>「掛金が安い！」と謳っているＣＭ商品も、実際に多くの方が契約しているのも、なぜか四角い保険です。<br>
+            <p>「掛金が安い！」と謳っているＣＭ商品も、実際に多くの方が契約している保険も、なぜか四角い保険です。<br>
             保険料は保障の大きさに比例して高くも安くもなります。安いということは、何か理由があるということです。</p>
             <p>契約した時に、必要な形にあった保険を選びましたか？<br>
             もし「形」まで考えていなかったとしたら、余計な保険料を払っているのかもしれません。</p>
@@ -43,7 +61,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   
   <script>
-let chartExpenses = Math.floor();
+let chartExpenses = Math.floor({{$guest_chartExpenses}});
 
 let ctx = document.getElementById('guestChart').getContext('2d');
 let guestChart = new Chart(ctx, {

@@ -24,6 +24,16 @@ class ExpenseController extends Controller
     
     public function store(Request $request){
         
+        // バリデーション
+        $request->validate([
+            'income_a' => 'required|numeric',
+            'income_b' => 'required|numeric',
+            'income_c' => 'required|numeric',
+            'expense_a' => 'required|numeric',
+            'expense_b' => 'required|numeric',
+            'expense_c' => 'required|numeric',
+        ]);
+        
         
          $request->user()->expenses()->create([
             'income_a' => $request->income_a,

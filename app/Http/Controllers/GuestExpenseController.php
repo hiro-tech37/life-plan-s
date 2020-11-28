@@ -20,6 +20,11 @@ class GuestExpenseController extends Controller
     
     public function store(Request $request){
         
+        $request->validate([
+            'guest_income' => 'required|numeric',
+            'guest_expense' => 'required|numeric',
+            ]);
+        
         $guest_income=$request->guest_income;
         $guest_expense=$request->guest_expense;
         $guest_total_expense=$guest_income - $guest_expense;
@@ -27,7 +32,7 @@ class GuestExpenseController extends Controller
         if($guest_total_expense>=0){
             $text="なんと、収支がマイナスになりませんでした！！　　この場合、生命保険は不要です。";
         }else{
-            $text="このマイナス分をうまく補いましょう。(この金額のメモをとって、次へ進んでください。)";
+            $text="このマイナス分をうまく補いましょう。";
         }
         
         $data = ['guest_income'=>$guest_income,

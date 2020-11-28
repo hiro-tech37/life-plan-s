@@ -31,6 +31,7 @@ Route::get('guest-expense','GuestExpenseController@show')->name('guest-expense.s
 Route::post('guest-expense','GuestExpenseController@store')->name('guest-expense.store');
 
 Route::get('guest-chart','GuestChartController@show')->name('guest-chart.show');
+Route::post('guest-chart','GuestChartController@store')->name('guest-chart.store');
 
 ////ログインユーザー
 Route::group(['middleware' => ['auth']], function () {

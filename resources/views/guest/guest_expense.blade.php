@@ -3,7 +3,8 @@
 @section('content')
         
         <h1>家計のサイズを計りましょう</h1>
-        <p>入力してね</p>
+        <p>まずは家計の大きさを計算します。<br>
+          被保険者（＝保険の対象者）が亡くなった後、月々の収入と支出はどうなるか、入力してみてください。</p>
        
              {!! Form::open( ['route' => 'guest-expense.store']) !!}
 
@@ -17,7 +18,7 @@
                     {!! Form::text('guest_expense', null) !!}
                 </div>
 
-                {!! Form::submit('収支', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('計算する', ['class' => 'btn btn-outline-primary']) !!}
 
             {!! Form::close() !!}
             
@@ -27,6 +28,10 @@
             <p　class="mt-4">{{$text}}</p>
             
             <!--進むリンクボタン-->
-            進むボタン
+            @if (($guest_total_expense) < 0)
+            　<p>(計算結果のメモをとって、次へ進んでください。)</p>
+              {!! link_to_route('guest-chart.show', '進む', [], ['class' => 'btn btn-success']) !!}
+              
+            @endif
            
 @endsection

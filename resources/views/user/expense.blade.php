@@ -72,7 +72,7 @@
         
          
         @if (isset($expenses) )
-         <p>合計：{{$expenses->total_expense}}万円/月</p>
+         <p class="mt-3" style="font-weight:bold">合計：{{$expenses->total_expense}}万円/月</p>
                 
             @if($expenses->total_expense >= 0)
             <p>なんと！！不足額がありませんでした！　生命保険が不要な理想的な家計です。<br>
@@ -86,8 +86,8 @@
         
             
             <!--進むリンクボタン-->
-            進むボタン
-        
-
+            @if (($expenses->total_expense) < 0)
+              {!! link_to_route('chart.show', '進む', [], ['class' => 'mb-5 btn btn-success']) !!}
+            @endif
         
 @endsection
